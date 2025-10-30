@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vídeos - Validação de Eventos</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #0d0d0d;
+            color: white;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #222;
+            padding: 10px;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            color: #00ffff;
+        }
+        .main-container {
+            display: flex;
+            margin-top: 50px; /* altura da navbar */
+            height: calc(100vh - 50px - 80px); /* altura total da viewport - navbar - footer */
+        }
+        .sidebar {
+            width: 200px;
+            background: #333;
+            color: white;
+            padding: 10px;
+            overflow-y: auto;
+        }
+        #daySidebar {
+            background-color: #444;
+            width: 200px;
+            overflow-y: auto;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar li {
+            padding: 10px;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.3s, color 0.3s;
+        }
+        .sidebar li:hover {
+            color: #00ffff;
+        }
+        .sidebar li.active {
+            background-color: #00ffff;
+            color: #000;
+            font-weight: bold;
+        }
+        .sidebar li.active::after {
+            content: "▶";
+            position: absolute;
+            right: 10px;
+            color: #000;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin-left: 10px;
+        }
+        .videos {
+            display: none;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .video-item {
+            width: 150px;
+            height: 100px;
+            background: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 5px;
+            color: #000;
+            font-weight: bold;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .video-item:hover {
+            transform: scale(1.05);
+            background-color: #00ffff;
+            color: #000;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            position: relative;
+            max-width: 90vw;
+            max-height: 80vh;
+            max-width: 50vw;
+            max-height: 40vh;
+        }
+        .modal-content iframe {
+            width: 100%;
+            height: 100%;
+        }
+        .close {
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            font-weight: bold;
+            user-select: none;
+        }
+        footer {
+            background-color: #111;
+            padding: 20px 30px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #00ffff;
+            margin-top: 20px;
+        }
+        footer a {
+            color: #00ffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="home.html">Página Inicial</a>
+        <a href="videos.html">Vídeos</a>
+        <a href="ajuda.html">Ajuda</a>
+    </div>
+
+    <div class="main-container">
+        <!-- Sidebar dos meses -->
+        <div class="sidebar" id="monthSidebar">
+            <ul>
+                <li onclick="showDays('jan')">Janeiro</li>
+                <li onclick="showDays('fev')">Fevereiro</li>
+                <li onclick="showDays('mar')">Março</li>
+                <li onclick="showDays('abr')">Abril</li>
+                <li onclick="showDays('mai')">Maio</li>
+                <li onclick="showDays('jun')">Junho</li>
+                <li onclick="showDays('jul')">Julho</li>
+                <li onclick="showDays('ago')">Agosto</li>
+                <li onclick="showDays('set')">Setembro</li>
+                <li onclick="showDays('out')">Outubro</li>
+                <li onclick="showDays('nov')">Novembro</li>
+                <li onclick="showDays('dez')">Dezembro</li>
+            </ul>
+        </div>
+
+        <!-- Sidebar dos dias -->
+        <div class="sidebar" id="daySidebar" style="display:none;">
+            <ul id="dayList">
+                <!-- Dias aparecem aqui -->
+            </ul>
+        </div>
+
+        <!-- Conteúdo dos vídeos -->
+        <div class="content">
+            <!-- Janeiro dia 1 -->
+            <div id="jan-1" class="videos">
+                <div class="video-item" onclick="openModal('images/Acidente 2.mp4')">
+                    Acidente - FMY9D25 - Janeiro 1
+                </div>
+                <div class="video-item" onclick="openModal('images/Acidente 1.mp4')">
+                    Acidente - FZC1916 - Janeiro 1
+                </div>
+            </div>
+
+            <!-- Janeiro dia 2 -->
+            <div id="jan-2" class="videos">
+                <div class="video-item" onclick="openModal('images/CÂMERA VEICULAR REGISTRA TRIO ROUBANDO CARRO DE MOTORISTA DE APLICATIVO EM SÃO BERNARDO - TV São Bernardo (720p, h264, youtube).mp4')">
+                    Roubo - GJX2J19 - Janeiro 2
+                </div>
+            </div>
+            <!-- Outros dias e meses aqui -->
+        </div>
+    </div>
+
+    <!-- Modal de vídeo -->
+    <div id="videoModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <iframe id="videoFrame" frameborder="0" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 Validação de Eventos. Todos os direitos reservados.</p>
+        <p>
+            <a href="privacidade.html">Política de Privacidade</a> |
+            <a href="termos.html">Termos de Uso</a> |
+            <a href="ajuda.html">Ajuda</a>
+        </p>
+    </footer>
+
+    <!-- Script -->
+    <script>
+        const daysInMonth = {
+            jan: 31,
+            fev: 28,
+            mar: 31,
+            abr: 30,
+            mai: 31,
+            jun: 30,
+            jul: 31,
+            ago: 31,
+            set: 30,
+            out: 31,
+            nov: 30,
+            dez: 31
+        };
+
+        function showDays(monthId) {
+            const daySidebar = document.getElementById('daySidebar');
+            const dayList = document.getElementById('dayList');
+            daySidebar.style.display = 'block';
+
+            // Remove destaque de todos os meses
+            document.querySelectorAll('#monthSidebar li').forEach(li => {
+                li.classList.remove('active');
+            });
+
+            // Adiciona destaque no mês atual
+            document.querySelectorAll('#monthSidebar li').forEach(li => {
+                if(li.innerText.toLowerCase().startsWith(monthId)) {
+                    li.classList.add('active');
+                }
+            });
+
+            // Limpa dias anteriores
+            dayList.innerHTML = '';
+
+            const totalDays = daysInMonth[monthId];
+            for (let i = 1; i <= totalDays; i++) {
+                const li = document.createElement('li');
+                li.innerText = `Dia ${i}`;
+                li.onclick = () => showVideos(`${monthId}-${i}`);
+                dayList.appendChild(li);
+            }
+
+            // Esconde vídeos anteriores
+            document.querySelectorAll('.videos').forEach(div => div.style.display = 'none');
+        }
+
+        function showVideos(dayId) {
+            document.querySelectorAll('.videos').forEach(div => div.style.display = 'none');
+            const target = document.getElementById(dayId);
+            if (target) {
+                target.style.display = 'flex';
+                document.getElementById('daySidebar').style.display = 'none';
+            } else {
+                alert('Sem vídeos para este dia ainda.');
+            }
+        }
+
+        function openModal(videoUrl) {
+            document.getElementById('videoFrame').src = videoUrl;
+            document.getElementById('videoModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('videoModal').style.display = 'none';
+            document.getElementById('videoFrame').src = '';
+        }
+    </script>
+</body>
+</html>
