@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ajuda - Validação de Eventos</title>
+    <link rel="stylesheet" href="style/style.css" />
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #0d0d0d;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%'><defs><pattern id='grid' width='60' height='60' patternUnits='userSpaceOnUse'><path d='M60 0 L0 0 0 60' fill='none' stroke='%23666666' stroke-width='0.5'/></pattern></defs><rect width='100%' height='100%' fill='url(%23grid)'/></svg>");
+            background-repeat: repeat;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .navbar {
+            background-color: #222;
+            padding: 10px 20px;
+        }
+
+        .navbar a {
+            color: white;
+            margin-right: 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            color: #00ffff;
+        }
+
+        .content {
+            flex: 1; /* faz o conteúdo crescer e ocupar o espaço disponível */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        form {
+            background-color: #fff; /* Formulário claro */
+            color: #000;
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            color: #000;
+            font-size: 16px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background-color: #222;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #444;
+        }
+
+        footer {
+            background-color: #111;
+            padding: 20px 30px;
+            text-align: center;
+            color: #666;
+            font-size: 14px;
+            border-top: 1px solid #00ffff;
+            margin-top: 50px;
+            flex-shrink: 0; /* para o footer não encolher */
+        }
+
+        footer a {
+            color: #00ffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="home.html">Página Inicial</a>
+        <a href="videos.html">Vídeos</a>
+        <a href="ajuda.html">Ajuda</a>
+    </div>
+
+    <!-- Conteúdo -->
+    <div class="content">
+        <h2>Precisa de ajuda?</h2>
+        <p>Preencha o formulário abaixo e entre em contato conosco para suporte sobre o uso da plataforma.</p>
+
+        <form action="#" method="post">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required />
+
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="assunto">Assunto:</label>
+            <input type="text" id="assunto" name="assunto" required />
+
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="mensagem" name="mensagem" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <footer style="display: flex;align-items: center;justify-content: center;align-content: center;">
+        <p>© 2025 Validação de Eventos. Todos os direitos reservados.</p>
+        <p>
+            <a href="privacidade.html">Política de Privacidade</a> |
+            <a href="termos.html">Termos de Uso</a> |
+            <a href="ajuda.html">Ajuda</a>
+        </p>
+    </footer>
+</body>
+</html>

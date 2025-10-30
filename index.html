@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+        <div style="background-image: url('images/image_bw.png'); background-size: cover; background-position: center; height: 100vh;">
+            <div style="font-family: Della Respira; text-align: center; font-size: 126px; color: darkgrey; padding-top: 5%; padding-left: -10px;">
+            Drive Safe
+        </div>
+        <div class="login-container">
+            <h2 style="text-align: center;">Login</h2>
+            <input type="text" id="username" placeholder="Usuário">
+            <input type="password" id="password" placeholder="Senha">
+            <button onclick="login()">Entrar</button>
+            <p id="error-message"></p>
+        </div>
+    </div>
+    
+
+    <script>
+        function login() {
+            let user = document.getElementById("username").value;
+            let pass = document.getElementById("password").value;
+
+            if (user === "admin" && pass === "1234") {
+                window.location.href = "home.html";
+            } else {
+                document.getElementById("error-message").textContent = "Usuário ou senha incorretos!";
+            }
+        }
+    </script>
+</body>
+</html>
